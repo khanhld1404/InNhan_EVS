@@ -1,0 +1,46 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="PrintLabel.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="DBPrintLabelConnectionString" Type="(Connection string)" Scope="Application">
+      <DesignTimeValue Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
+&lt;SerializableConnectionString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;ConnectionString&gt;Data Source=10.239.1.156;Initial Catalog=DBPrintLabel;Persist Security Info=True;User ID=admin;Password=123456&lt;/ConnectionString&gt;
+  &lt;ProviderName&gt;System.Data.SqlClient&lt;/ProviderName&gt;
+&lt;/SerializableConnectionString&gt;</DesignTimeValue>
+      <Value Profile="(Default)">Data Source=10.239.1.156;Initial Catalog=DBPrintLabel;Persist Security Info=True;User ID=admin;Password=123456</Value>
+    </Setting>
+    <Setting Name="DBPrintLabelConnectionString1" Type="(Connection string)" Scope="Application">
+      <DesignTimeValue Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
+&lt;SerializableConnectionString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;ConnectionString&gt;Data Source=TVC-IT-004;Initial Catalog=DBPrintLabel;Persist Security Info=True;User ID=sa;Password=hung123@&lt;/ConnectionString&gt;
+  &lt;ProviderName&gt;System.Data.SqlClient&lt;/ProviderName&gt;
+&lt;/SerializableConnectionString&gt;</DesignTimeValue>
+      <Value Profile="(Default)">Data Source=TVC-IT-004;Initial Catalog=DBPrintLabel;Persist Security Info=True;User ID=sa;Password=hung123@</Value>
+    </Setting>
+    <Setting Name="DBPrintLabelConnectionString2" Type="(Connection string)" Scope="Application">
+      <DesignTimeValue Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
+&lt;SerializableConnectionString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;ConnectionString&gt;Data Source=10.239.1.156;Initial Catalog=DBPrintLabel;User ID=sa;Password=123456&lt;/ConnectionString&gt;
+  &lt;ProviderName&gt;System.Data.SqlClient&lt;/ProviderName&gt;
+&lt;/SerializableConnectionString&gt;</DesignTimeValue>
+      <Value Profile="(Default)">Data Source=10.239.1.156;Initial Catalog=DBPrintLabel;User ID=sa;Password=123456</Value>
+    </Setting>
+    <Setting Name="DBPrintLabel_ver02ConnectionString" Type="(Connection string)" Scope="Application">
+      <DesignTimeValue Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
+&lt;SerializableConnectionString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;ConnectionString&gt;Data Source=TVC-IT-018;Initial Catalog=DBPrintLabel_ver02;Persist Security Info=True;User ID=sa;Password=hung123@&lt;/ConnectionString&gt;
+  &lt;ProviderName&gt;System.Data.SqlClient&lt;/ProviderName&gt;
+&lt;/SerializableConnectionString&gt;</DesignTimeValue>
+      <Value Profile="(Default)">Data Source=TVC-IT-018;Initial Catalog=DBPrintLabel_ver02;Persist Security Info=True;User ID=sa;Password=hung123@</Value>
+    </Setting>
+    <Setting Name="DBPrintLabel_ver02ConnectionString1" Type="(Connection string)" Scope="Application">
+      <DesignTimeValue Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
+&lt;SerializableConnectionString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;ConnectionString&gt;Data Source=TVC-IT-018;Initial Catalog=DBPrintLabel_ver02;User ID=sa;Password=hung123@&lt;/ConnectionString&gt;
+  &lt;ProviderName&gt;System.Data.SqlClient&lt;/ProviderName&gt;
+&lt;/SerializableConnectionString&gt;</DesignTimeValue>
+      <Value Profile="(Default)">Data Source=TVC-IT-018;Initial Catalog=DBPrintLabel_ver02;User ID=sa;Password=hung123@</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>
