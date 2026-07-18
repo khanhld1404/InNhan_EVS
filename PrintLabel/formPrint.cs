@@ -43,8 +43,6 @@ namespace PrintLabel
 
         bool LeaderSX = false;
 
-
-
         clQuery cl = new clQuery();
 
         // Chuoi test: 01110051%11297610OLB34DEVICE
@@ -366,6 +364,7 @@ namespace PrintLabel
 
 
 
+        // Hàm in 
         public void print(short _copies)
         {
             try
@@ -396,6 +395,10 @@ namespace PrintLabel
                 ps.PrinterName = _PrintName;//Code to set default printer name
                 pd.PrinterSettings.PrinterName = _PrintName;//Code to set default printer name 
 
+                //PaperSize paper =
+                //    new PaperSize("Custom", 400, 290);
+
+                //pdoc.DefaultPageSettings.PaperSize = paper;
 
                 pdoc.PrinterSettings.Copies = _copies; //(short)numericCopy.Value;
 
@@ -546,6 +549,7 @@ namespace PrintLabel
             if (e.KeyCode == Keys.Enter)
             {
                 CreateBarcode_Print();
+                MessageBox.Show(cl.ReadFile(0));
             }
         }
 
@@ -630,7 +634,7 @@ namespace PrintLabel
 
         private void btnInNhanDG_TAS_Click(object sender, EventArgs e)
         {
-            DongGoi_TAS.formPrintDG_TAS tas = new DongGoi_TAS.formPrintDG_TAS();
+            DongGoi_TAS.formPrintDG_TAS tas = new DongGoi_TAS.formPrintDG_TAS(_IDUser,_IDHistoryLogin,_FullName,_UserName,_Admin,_MaChucNang);
             tas.ShowDialog();
         }
     }

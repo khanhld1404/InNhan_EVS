@@ -37,8 +37,25 @@ namespace PrintLabel
             try
             {
                 string[] lines = File.ReadAllLines(@"Setting.txt");
+                // Ngăn chặn việc có khoảng trằng dẫn đến lỗi
+                string _output = lines[STT_Dong].Trim();
+                return _output;
 
-                string _output = lines[STT_Dong];
+            }
+            catch
+            {
+                return "";
+            }
+        }
+        // Đọc thông tin TAS
+
+        public string ReadFileTAS(int STT_Dong, string file)
+        {
+            try
+            {
+                string[] lines = File.ReadAllLines(file);
+                // Ngăn chặn việc có khoảng trằng dẫn đến lỗi
+                string _output = lines[STT_Dong].Trim();
                 return _output;
 
             }
@@ -74,9 +91,34 @@ namespace PrintLabel
             }
         }
 
-     
+        // Viết thông tin vào file TAS
+        public void WriteFileTAS(string file, string PrintName, string Copies,string HesoBarcode)
+        {
+            try
+            {
 
-      
+                string[] lines = { PrintName, Copies, HesoBarcode };
+
+                // Set a variable to the Documents path.
+
+                //string docPath =
+                //  Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+
+                // Write the string array to a new file named "WriteLines.txt".
+                using (StreamWriter outputFile = new StreamWriter(file))
+                {
+                    foreach (string line in lines)
+                        outputFile.WriteLine(line);
+                }
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+        }
+
+
 
         public bool check_Exist_Scan_CreatePackingList(int idUser, int idPL, string WO, string ID, string Item, string Rev)
         {
