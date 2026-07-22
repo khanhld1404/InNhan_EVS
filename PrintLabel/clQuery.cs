@@ -49,21 +49,21 @@ namespace PrintLabel
         }
         // Đọc thông tin TAS
 
-        public string ReadFileTAS(int STT_Dong, string file)
-        {
-            try
-            {
-                string[] lines = File.ReadAllLines(file);
-                // Ngăn chặn việc có khoảng trằng dẫn đến lỗi
-                string _output = lines[STT_Dong].Trim();
-                return _output;
+        //public string ReadFileTAS(int STT_Dong, string file)
+        //{
+        //    try
+        //    {
+        //        string[] lines = File.ReadAllLines(file);
+        //        // Ngăn chặn việc có khoảng trằng dẫn đến lỗi
+        //        string _output = lines[STT_Dong].Trim();
+        //        return _output;
 
-            }
-            catch
-            {
-                return "";
-            }
-        }
+        //    }
+        //    catch
+        //    {
+        //        return "";
+        //    }
+        //}
 
         public void WriteFile(string PrintName, string Copies, string Dong, string cotWO, string cotID, string cotItem, string MaxPackingList, string showSetting, string HesoBarcode, string cotRev, string PathSavePL)
         {
@@ -92,31 +92,31 @@ namespace PrintLabel
         }
 
         // Viết thông tin vào file TAS
-        public void WriteFileTAS(string file, string PrintName, string Copies,string HesoBarcode)
-        {
-            try
-            {
+        //public void WriteFileTAS(string file, string PrintName, string Copies,string HesoBarcode)
+        //{
+        //    try
+        //    {
 
-                string[] lines = { PrintName, Copies, HesoBarcode };
+        //        string[] lines = { PrintName, Copies, HesoBarcode };
 
-                // Set a variable to the Documents path.
+        //        // Set a variable to the Documents path.
 
-                //string docPath =
-                //  Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+        //        //string docPath =
+        //        //  Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
 
-                // Write the string array to a new file named "WriteLines.txt".
-                using (StreamWriter outputFile = new StreamWriter(file))
-                {
-                    foreach (string line in lines)
-                        outputFile.WriteLine(line);
-                }
+        //        // Write the string array to a new file named "WriteLines.txt".
+        //        using (StreamWriter outputFile = new StreamWriter(file))
+        //        {
+        //            foreach (string line in lines)
+        //                outputFile.WriteLine(line);
+        //        }
 
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.ToString());
-            }
-        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        MessageBox.Show(ex.ToString());
+        //    }
+        //}
 
 
 

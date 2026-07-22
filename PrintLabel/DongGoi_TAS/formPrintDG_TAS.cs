@@ -35,7 +35,6 @@ namespace PrintLabel.DongGoi_TAS
         string strRev = "";
         string strDes = "";
 
-        int Wi = 0;
 
         private const int LINE_FONT_SIZE = 10;
         private const string STANDARD_FONT_NAME = "Verdana";
@@ -43,6 +42,9 @@ namespace PrintLabel.DongGoi_TAS
         private PrintDocument pdoc = null;
 
         clQuery cl = new clQuery();
+
+        // Thông tin đường dẫn đến chỗ độc dữ liệu master đầu vào chương trình
+        string file_route = Application.StartupPath + "\\SettingDongGoi.ini";
 
         public formPrintDG_TAS(int IDUser, int IDHistoryLogin, string FullName, string UserName, bool admin, string machucnang)
         {
@@ -60,55 +62,34 @@ namespace PrintLabel.DongGoi_TAS
             lbFullName.Text = _FullName;
             MenuAccount.Text = string.Format("{0} ({1})", _FullName, _UserName);
 
-            _PrintName = cl.ReadFileTAS(0,"Setting_TAS.txt"); // Đọc dòng đầu tiên
-            string _copies = cl.ReadFileTAS(1, "Setting_TAS.txt"); // Đọc dòng thứ 2// Thay đổi, số bản in người dùng tự nhập
+            _PrintName = IniFile.ReadValue("DongGoi_TAS", "Printer", file_route); // Đọc dòng đầu tiên
+            string _copies = IniFile.ReadValue("DongGoi_TAS", "Copies", file_route); // Đọc dòng thứ 2// Thay đổi, số bản in người dùng tự nhập
             numericCopy.Value = short.Parse(_copies);
 
             // lấy thông tin tên máy
             lbTenMay.Text = clQuery.PCName();
             lbMaChucNang.Text = _MaChucNang;
         }
-
-        private void PrintLine(int intLineNo, string strFixed, string strVar, string strWidthToSameAs, short intInitialFontSize, System.Drawing.Printing.PrintPageEventArgs e)
+        // Hàm dùng để lấy thông tin cho file ini
+        // Lấy tên
+        private string Get_Ini_Name(string SectionName)
         {
-            short intFixedLen;
-            short intVariableLen;
-            short intTextFontSize;
-            short yPos = 0;
-
-            intTextFontSize = intInitialFontSize;
-
-            Font fixedFont = new Font(STANDARD_FONT_NAME, intInitialFontSize, FontStyle.Bold);
-            Font varFont = new Font(STANDARD_FONT_NAME, intInitialFontSize, FontStyle.Bold);
-
-            yPos = (short)((intLineNo * fixedFont.GetHeight(e.Graphics)) - 10);
-
-            SizeF StringSize = new SizeF();
-            StringSize = e.Graphics.MeasureString(strWidthToSameAs, fixedFont);
-
-            intFixedLen = (short)(StringSize.Width + 5); // Get width of fixed part of string + a bit extra
-            Debug.Print(strFixed + " " + intFixedLen);
-
-            StringSize = e.Graphics.MeasureString(strVar, varFont);
-            intVariableLen = (short)(StringSize.Width);
-            while ((intVariableLen + intFixedLen) > e.PageBounds.Width)
-            {
-                intTextFontSize += -1;
-                varFont = new Font("Arial", intTextFontSize - 1, FontStyle.Bold);
-                StringSize = e.Graphics.MeasureString(strVar, varFont);
-                intVariableLen = (short)(StringSize.Width);
-            }
-
-            //e.Graphics.DrawString(strFixed, fixedFont, Brushes.Black, 0, yPos - 8, new StringFormat());
-            //e.Graphics.DrawString(strVar, varFont, Brushes.Black, intFixedLen - 12, yPos - 8, new StringFormat());
-
-            e.Graphics.DrawString(strFixed, fixedFont, Brushes.Black, 10, yPos, new StringFormat());
-            e.Graphics.DrawString(strVar, varFont, Brushes.Black, intFixedLen, yPos, new StringFormat());
-
-            //e.Graphics.DrawString(strFixed, fixedFont, Brushes.Black, 0, yPos - 8, new StringFormat());
-            //e.Graphics.DrawString(strVar, varFont, Brushes.Black, intFixedLen - 12, yPos - 8, new StringFormat());
+            return IniFile.ReadValue(SectionName, "name", file_route);
         }
+        //Lấy tọa độ x
+        private int Get_Ini_X(string SectionName)
+        {
+            string value = IniFile.ReadValue(SectionName, "x", file_route).Trim();
 
+            return short.Parse(value);
+        }
+        //Lấy tọa độ y
+        private int Get_Ini_Y(string SectionName)
+        {
+            string value = IniFile.ReadValue(SectionName, "y", file_route).Trim();
+
+            return short.Parse(value);
+        }
         private void printDocument1_PrintPage(object sender, PrintPageEventArgs e)
         {
 
@@ -120,7 +101,7 @@ namespace PrintLabel.DongGoi_TAS
                 Format = BarcodeFormat.CODE_128,
                 Options = new ZXing.Common.EncodingOptions
                 {
-                    Height = 20,
+                    Height = 25,
                     Width = 120,
                     Margin = 0,
                     PureBarcode = true
@@ -133,18 +114,10 @@ namespace PrintLabel.DongGoi_TAS
             Font fontTitle = new Font("Arial", 11, FontStyle.Bold);
 
             //--------------------------------------------------
-            // HEADER
-            //--------------------------------------------------
-
-            g.DrawString("DO NOT USE", fontTitle, Brushes.Black, 235, 20);
-            g.DrawString("Inspection Required", fontNormal, Brushes.Black, 235, 50);
-
-            //--------------------------------------------------
             // MATERIAL
             //--------------------------------------------------
-
-            g.DrawString("Material :", fontNormal, Brushes.Black, 20, 50);
-            g.DrawString(strItemNo, fontNormal, Brushes.Black, 85, 50);
+            g.DrawString(Get_Ini_Name("lab1"), fontNormal, Brushes.Black, Get_Ini_X("lab1"), Get_Ini_Y("lab1"));
+            g.DrawString(strItemNo, fontNormal, Brushes.Black, Get_Ini_X("value1"), Get_Ini_Y("value1"));
 
             //--------------------------------------------------
             // MATERIAL BARCODE
@@ -154,35 +127,42 @@ namespace PrintLabel.DongGoi_TAS
             {
                 g.DrawImage(
                     materialBarcode,
-                    20,
-                    90);
+                    Get_Ini_X("barcode1"),
+                    Get_Ini_Y("barcode1"));
             }
 
             //--------------------------------------------------
             // DESCRIPTION
             //--------------------------------------------------
 
-            g.DrawString("Description :", fontNormal, Brushes.Black, 20, 140);
+            g.DrawString(Get_Ini_Name("lab2"), fontNormal, Brushes.Black, Get_Ini_X("lab2"), Get_Ini_Y("lab2"));
+
+            RectangleF rectDes = new RectangleF(
+                Get_Ini_X("value2"),  // X
+                Get_Ini_Y("value2"),  // Y
+                250,  // Width
+                60    // Height
+            );
 
             g.DrawString(
                 strDes,
                 fontNormal,
                 Brushes.Black,
-                110,
-                140);
+                rectDes);
+
 
             //--------------------------------------------------
             // BATCH
             //--------------------------------------------------
 
-            g.DrawString("Batch :", fontNormal, Brushes.Black, 20, 180);
+            g.DrawString(Get_Ini_Name("lab3"), fontNormal, Brushes.Black, Get_Ini_X("lab3"), Get_Ini_Y("lab3"));
 
             g.DrawString(
                 strIDNo,
                 fontNormal,
                 Brushes.Black,
-                70,
-                180);
+                Get_Ini_X("value3"),
+                Get_Ini_Y("value3"));
 
             //--------------------------------------------------
             // BATCH BARCODE
@@ -192,8 +172,8 @@ namespace PrintLabel.DongGoi_TAS
             {
                 g.DrawImage(
                     batchBarcode,
-                    20,
-                    210);
+                    Get_Ini_X("barcode2"),
+                    Get_Ini_Y("barcode2"));
             }
 
             //--------------------------------------------------
@@ -201,78 +181,70 @@ namespace PrintLabel.DongGoi_TAS
             //--------------------------------------------------
 
             g.DrawString(
-                "Vendor Batch :",
+                Get_Ini_Name("lab4"),
                 fontNormal,
                 Brushes.Black,
-                20,
-                260);
+                Get_Ini_X("lab4"),
+                Get_Ini_Y("lab4"));
 
             g.DrawString(
                 strIDNo,
                 fontNormal,
                 Brushes.Black,
-                125,
-                260);
+                Get_Ini_X("value4"),
+                Get_Ini_Y("value4"));
+            //--------------------------------------------------
+            // HEADER
+            //--------------------------------------------------
+
+            g.DrawString(Get_Ini_Name("lab5"), fontTitle, Brushes.Black, Get_Ini_X("lab5"), Get_Ini_Y("lab5"));
+            g.DrawString(Get_Ini_Name("lab6"), fontNormal, Brushes.Black, Get_Ini_X("lab6"), Get_Ini_Y("lab6"));
 
             //--------------------------------------------------
             // RIGHT SIDE
             //--------------------------------------------------
 
             g.DrawString(
-                "Revision Level :",
+                Get_Ini_Name("lab7"),
                 fontNormal,
                 Brushes.Black,
-                235,
-                100);
+                Get_Ini_X("lab7"),
+                Get_Ini_Y("lab7"));
 
             g.DrawString(
                 strRev,
                 fontNormal,
                 Brushes.Black,
-                345,
-                100);
+                Get_Ini_X("value5"),
+                Get_Ini_Y("value5"));
 
             g.DrawString(
-                "Exp.",
+                Get_Ini_Name("lab8"),
                 fontNormal,
                 Brushes.Black,
-                235,
-                170);
+                Get_Ini_X("lab8"),
+                Get_Ini_Y("lab8"));
 
             g.DrawString(
-                "N/A",
+                Get_Ini_Name("value6"),
                 fontNormal,
                 Brushes.Black,
-                315,
-                170);
+                Get_Ini_X("value6"),
+                Get_Ini_Y("value6"));
 
             g.DrawString(
-                "Date :",
+                Get_Ini_Name("lab9"),
                 fontNormal,
                 Brushes.Black,
-                235,
-                200);
+                Get_Ini_X("lab9"),
+                Get_Ini_Y("lab9"));
 
             g.DrawString(
-                "",
-                fontNormal,
-                Brushes.Black,
-                315,
-                200);
-
-            g.DrawString(
-                "Vendor Name :",
-                fontNormal,
-                Brushes.Black,
-                235,
-                240);
-
-            g.DrawString(
-                "Terumo Vietnam Co. Ltd",
+                Get_Ini_Name("lab10"),
                 new Font("Arial", 9, FontStyle.Bold),
                 Brushes.Black,
-                235,
-                260);
+                Get_Ini_X("lab10"),
+                Get_Ini_Y("lab10"));
         }
 
 
@@ -350,7 +322,7 @@ namespace PrintLabel.DongGoi_TAS
                 prin.Rev_No = strRev;
                 //prin.Remark = numericCopy.Value.ToString(); // Số bản in/1 lần in
                 prin.strFull = txtScanBarcode.Text;
-
+                prin.Remark = "TAS";
                 prin.Copies = copies;
                 prin.PrePrint = prePrint;
                 prin.FuncCode = lbMaChucNang.Text;
@@ -414,13 +386,6 @@ namespace PrintLabel.DongGoi_TAS
                     var image = Image.FromStream(stream);
 
                     mv.Image = image;
-
-                    string strHeSoBarcode = cl.ReadFileTAS(2, "Setting_TAS.txt"); // Lấy hệ số nhãn barcode trong file setting
-
-                    double HeSoBarcode = double.Parse(strHeSoBarcode);
-
-                    Wi = (int)(image.Width * HeSoBarcode); //HeSoBarcode
-                                                           //int He = image.Height;
                 }
             }
         }
@@ -476,30 +441,17 @@ namespace PrintLabel.DongGoi_TAS
 
                         if (checkRePrint > 0) // in lại
                         {
-                            if (_MaChucNang == "NHAN_BARCODE_KITTING")
+                            fromConfirmRePrintLeader re = new fromConfirmRePrintLeader();
+                            if (re.ShowDialog() == DialogResult.OK)
                             {
-                                ////  Lưu lịch sử scan, Ai scan, vào lúc nào, scan cái gì
-                                //SaveHis_Print((int)numericCopy.Value, true);
-                                //// Hàm print ở đây nhé
-                                //print((short)numericCopy.Value);
-                                MessageBox.Show("Chỉ thực hiện nhận barcode đóng thùng");
-                            }
-                            else // Công đoạn đóng gói cần xác nhận của Leader
-                            {
-                                fromConfirmRePrintLeader re = new fromConfirmRePrintLeader();
-                                if (re.ShowDialog() == DialogResult.OK)
-                                {
-                                    string leaderConfirm = re.UserName_Admin;
-                                    short copies = re.Copies;
-                                    string lyDoInLai = re.LyDoInLai;
-                                    DateTime reTime = DateTime.Now;
+                                string leaderConfirm = re.UserName_Admin;
+                                short copies = re.Copies;
+                                string lyDoInLai = re.LyDoInLai;
+                                DateTime reTime = DateTime.Now;
 
-                                    SaveHis_Print(copies, true, lyDoInLai, leaderConfirm, reTime);
-                                    // Hàm print ở đây nhé
-                                    print(copies);
-
-                                }
-
+                                SaveHis_Print(copies, true, lyDoInLai, leaderConfirm, reTime);
+                                // Hàm print ở đây nhé
+                                print(copies);
 
                             }
                         }
@@ -529,7 +481,7 @@ namespace PrintLabel.DongGoi_TAS
             if(_Admin && check_leader)
             {
                 Setting_Printer_TAS f = new Setting_Printer_TAS();
-                f.Show();
+                f.ShowDialog();
             }
             else
             {

@@ -549,7 +549,6 @@ namespace PrintLabel
             if (e.KeyCode == Keys.Enter)
             {
                 CreateBarcode_Print();
-                MessageBox.Show(cl.ReadFile(0));
             }
         }
 

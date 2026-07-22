@@ -54,7 +54,6 @@
             this.label16 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
-            this.label13 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
@@ -87,9 +86,9 @@
             this.groupBox1.Controls.Add(this.label9);
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.groupBox1.ForeColor = System.Drawing.Color.Navy;
-            this.groupBox1.Location = new System.Drawing.Point(809, 77);
+            this.groupBox1.Location = new System.Drawing.Point(765, 82);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(324, 144);
+            this.groupBox1.Size = new System.Drawing.Size(313, 144);
             this.groupBox1.TabIndex = 20;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Thông tin tài khoản - Chức năng";
@@ -100,7 +99,7 @@
             this.lbTenMay.AutoSize = true;
             this.lbTenMay.BackColor = System.Drawing.Color.Yellow;
             this.lbTenMay.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.lbTenMay.Location = new System.Drawing.Point(112, 60);
+            this.lbTenMay.Location = new System.Drawing.Point(101, 60);
             this.lbTenMay.Name = "lbTenMay";
             this.lbTenMay.Size = new System.Drawing.Size(57, 16);
             this.lbTenMay.TabIndex = 18;
@@ -112,7 +111,7 @@
             this.lbMaChucNang.AutoSize = true;
             this.lbMaChucNang.BackColor = System.Drawing.Color.Yellow;
             this.lbMaChucNang.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.lbMaChucNang.Location = new System.Drawing.Point(112, 91);
+            this.lbMaChucNang.Location = new System.Drawing.Point(101, 91);
             this.lbMaChucNang.Name = "lbMaChucNang";
             this.lbMaChucNang.Size = new System.Drawing.Size(83, 15);
             this.lbMaChucNang.TabIndex = 16;
@@ -122,7 +121,7 @@
             // 
             this.label10.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(45, 60);
+            this.label10.Location = new System.Drawing.Point(34, 60);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(57, 15);
             this.label10.TabIndex = 15;
@@ -132,7 +131,7 @@
             // 
             this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(15, 91);
+            this.label5.Location = new System.Drawing.Point(4, 91);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(88, 15);
             this.label5.TabIndex = 14;
@@ -144,7 +143,7 @@
             this.lbFullName.AutoSize = true;
             this.lbFullName.BackColor = System.Drawing.Color.Yellow;
             this.lbFullName.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.lbFullName.Location = new System.Drawing.Point(112, 32);
+            this.lbFullName.Location = new System.Drawing.Point(101, 32);
             this.lbFullName.Name = "lbFullName";
             this.lbFullName.Size = new System.Drawing.Size(44, 16);
             this.lbFullName.TabIndex = 13;
@@ -154,7 +153,7 @@
             // 
             this.label9.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(38, 32);
+            this.label9.Location = new System.Drawing.Point(27, 32);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(64, 15);
             this.label9.TabIndex = 12;
@@ -243,7 +242,6 @@
             this.groupBox2.Controls.Add(this.label16);
             this.groupBox2.Controls.Add(this.label15);
             this.groupBox2.Controls.Add(this.label14);
-            this.groupBox2.Controls.Add(this.label13);
             this.groupBox2.Controls.Add(this.label12);
             this.groupBox2.Controls.Add(this.label11);
             this.groupBox2.Controls.Add(this.label8);
@@ -364,21 +362,11 @@
             // 
             this.label14.AutoSize = true;
             this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label14.Location = new System.Drawing.Point(496, 182);
+            this.label14.Location = new System.Drawing.Point(494, 210);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(30, 13);
             this.label14.TabIndex = 8;
             this.label14.Text = "N/A";
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.Location = new System.Drawing.Point(400, 213);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(48, 16);
-            this.label13.TabIndex = 7;
-            this.label13.Text = "Date :";
             // 
             // label12
             // 
@@ -394,11 +382,11 @@
             // 
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(400, 182);
+            this.label11.Location = new System.Drawing.Point(400, 210);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(37, 16);
+            this.label11.Size = new System.Drawing.Size(78, 16);
             this.label11.TabIndex = 5;
-            this.label11.Text = "Exp.";
+            this.label11.Text = "Exp.Date :";
             // 
             // label8
             // 
@@ -454,7 +442,7 @@
             // 
             this.lbTitle.AutoSize = true;
             this.lbTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 22F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.lbTitle.Location = new System.Drawing.Point(480, 24);
+            this.lbTitle.Location = new System.Drawing.Point(455, 24);
             this.lbTitle.Name = "lbTitle";
             this.lbTitle.Size = new System.Drawing.Size(234, 36);
             this.lbTitle.TabIndex = 27;
@@ -467,7 +455,7 @@
             this.Set_Printer});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1155, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(1090, 24);
             this.menuStrip1.TabIndex = 28;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -485,7 +473,7 @@
             // 
             this.menuChangePass.Image = global::PrintLabel.Properties.Resources.reset_password_24x24;
             this.menuChangePass.Name = "menuChangePass";
-            this.menuChangePass.Size = new System.Drawing.Size(180, 22);
+            this.menuChangePass.Size = new System.Drawing.Size(145, 22);
             this.menuChangePass.Text = "Đổi mật khẩu";
             // 
             // Set_Printer
@@ -500,7 +488,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1155, 527);
+            this.ClientSize = new System.Drawing.Size(1090, 527);
             this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.lbTitle);
             this.Controls.Add(this.groupBox2);
@@ -555,7 +543,6 @@
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label Rev;
         private System.Windows.Forms.Label Vendor_Batch;
         private System.Windows.Forms.Label Batch;
